@@ -15,3 +15,15 @@
   margin-bottom: $gap;
   text-transform: uppercase;
 }
+
+@mixin keybase {
+  background-color: #333;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

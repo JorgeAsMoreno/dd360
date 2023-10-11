@@ -1,0 +1,77 @@
+.onboarding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 0;
+
+  p {
+    color: #000;
+    font-size: 19px;
+    margin: 0 0 1em 0;
+  }
+
+  &_container {
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 5em 3em;
+    width: 546px;
+
+    h1 {
+      color: #000;
+      text-align: center;
+      font-size: 35px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    &__rules {
+      margin: 2.175em 0 1.125em 0;
+    }
+
+    &__examples {
+      .title {
+        color: #000;
+        font-size: 19px;
+        margin-bottom: 1em;
+        font-weight: 700;
+      }
+
+      .words {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .info {
+        text-align: center;
+      }
+
+    }
+    .controls {
+      text-align: center;
+      margin-top: 3em;
+    
+      p {
+        text-align: center;
+      }
+
+      button {
+        border-radius: 5px;
+        background: #6AAA64;
+        border: 0;
+        color: #FFF;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 800;
+        width: 263px;
+        padding: .5em 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .onboarding_container {
+    width: auto;
+  }
+}

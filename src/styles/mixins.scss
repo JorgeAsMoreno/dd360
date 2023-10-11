@@ -4,8 +4,14 @@
   width: $size;
   height: $size;
   border: solid 2px #555;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin row {
+  display: flex;
+  gap: $gap;
+  margin-bottom: $gap;
+  text-transform: uppercase;
 }

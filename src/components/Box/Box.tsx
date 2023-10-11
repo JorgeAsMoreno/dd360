@@ -2,16 +2,16 @@ import React from 'react'
 import { IBoxProps } from './box.interface'
 import styles from './box.module.scss'
 import classNames from 'classnames/bind'
-
 const classes = classNames.bind(styles)
 
 const Box = ({ value, status }: IBoxProps) => {
 
   const boxStatus = classes({
-    correct: status === 'correct',
-    edit: status === 'edit',
-    absent: status === 'absent',
-    empty: status === 'empty',
+    correct: status === "correct",
+    present: status === "present",
+    absent: status === "absent",
+    empty: status === "empty",
+    edit: status === "edit",
   })
 
   return (

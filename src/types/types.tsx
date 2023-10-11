@@ -1,4 +1,4 @@
-export type BoxStatus = 'absent' | 'correct' | 'empty' | 'edit'
+export type BoxStatus = "absent" | "present" | "correct" | "empty" | "edit";
 
 export enum GameStatus {
   Won,

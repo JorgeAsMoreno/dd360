@@ -1,12 +1,13 @@
 @mixin box {
   font-size: 2em;
   font-weight: bold;
+  background-color: #939b9f4d;
   width: $size;
   height: $size;
-  border: solid 2px #555;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 }
 
 @mixin row {
@@ -17,13 +18,21 @@
 }
 
 @mixin keybase {
-  background-color: #333;
+  background-color: #d3d6da;
   cursor: pointer;
   border: none;
-  border-radius: 3px;
-  color: white;
-
+  border-radius: 5px;
+  color: #56575e;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+
+  &:active {
+    background-color: #818181;
+    color: #fff;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
 }

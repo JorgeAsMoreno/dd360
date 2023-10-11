@@ -1,0 +1,36 @@
+.board {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em 0 0 0;
+
+  &_controls {
+    align-items: center;
+    background: #F3F3F3;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    width: 638px;
+    height: 84px;
+    justify-content: space-around;
+
+    h1 {
+      margin: 0;
+      color: #202537;
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: 3px;
+    }
+
+    .control {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+
+  &_rows {
+    margin: 2em 0;
+  }
+}

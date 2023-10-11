@@ -8,8 +8,11 @@ import useWindow from '../../hooks/useWindow'
 import { KEYS } from '../../constants/constants'
 import { getWordEachFiveMinutes } from '../../utils/getWord'
 import Keyboard from '../Keyboard/Keyboard'
+import './board.scss'
+import questionImage from '../../icons/question.svg'
+import statsImage from '../../icons/stats.svg'
 
-const Board = () => {
+const Board = ({ setHasOnboarding }: any) => {
   const [event, updateEvent] = useReducer((prev: IBoard, next: Partial<IBoard>) => {
     return { ...prev, ...next }
   }, {
@@ -17,7 +20,8 @@ const Board = () => {
     attempts: 1,
     currentWord: '',
     completedWords: [],
-    gameStatus: GameStatus.Playing
+    gameStatus: GameStatus.Playing,
+    showModal: false,
   })
 
   const handleKeyDown = (ev: KeyboardEvent) => {
@@ -52,7 +56,6 @@ const Board = () => {
         completedWords: [...event.completedWords, event.currentWord],
         gameStatus: GameStatus.Won
       })
-      console.log('GANASTE!')
       return
     }
 
@@ -61,7 +64,6 @@ const Board = () => {
         completedWords: [...event.completedWords, event.currentWord],
         gameStatus: GameStatus.Lost
       })
-      console.log('PERDISTE!')
       return
     }
 
@@ -81,12 +83,24 @@ const Board = () => {
   }, [])
 
   return (
-    <main>
-      <h1>Board</h1>
-      {event.wordChoosed}
-
-      Intentos:{event.attempts}
-      {event.completedWords.map((word, i) => (
+    <main className='board'>
+      <div className='board_controls'>
+        <div>
+          <button className='control' onClick={() => setHasOnboarding(false)}>
+            <img src={questionImage} alt='ayuda' />
+          </button>
+        </div>
+        <div>
+          <h1>WORDLE</h1>
+        </div>
+        <div>
+          <button className='control'>
+            <img src={statsImage} alt='Estadisticas' />
+          </button>
+        </div>
+      </div>
+      <div className='board_rows'>
+        {event.completedWords.map((word, i) => (
           <RowFinished
             key={i}
             word={word}
@@ -94,7 +108,6 @@ const Board = () => {
             isExample={false}
           />
         ))}
-
         {event.gameStatus === GameStatus.Playing ? (
           <RowCurrent word={event.currentWord} />
         ) : null}
@@ -102,7 +115,11 @@ const Board = () => {
         {Array.from(Array(5 - event.attempts)).map((_, i) => (
           <RowEmpty key={i} />
         ))}
-        <Keyboard keys={KEYS} onKeyPressed={onKeyPressed} />
+      </div>
+      <Keyboard
+        keys={KEYS}
+        onKeyPressed={onKeyPressed}
+      />
     </main>
   )
 }

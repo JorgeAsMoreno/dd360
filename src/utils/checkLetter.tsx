@@ -7,6 +7,6 @@ export const checkLetter = (letter: string, position: number, solution: string, 
     } else return 'present'
   }
   if (isExample === true) {
-    return 'empty'
+    return 'edit'
   } else return 'absent'
 }

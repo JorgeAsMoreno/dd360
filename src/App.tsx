@@ -18,7 +18,9 @@ function App() {
         <Onboarding
           {...{setHasOnboarding}}
         /> :
-        <Board />
+        <Board
+          {...{setHasOnboarding}}
+        />
       }
     </React.Fragment>
   );

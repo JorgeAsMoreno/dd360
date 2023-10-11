@@ -1,9 +1,8 @@
-import React from 'react'
 import { IKeyboard } from './keyboard.interface'
-import styles from './keyboard.module.scss'
+import './keyboard.scss'
+import backSpace from '../../icons/backspace.svg'
 
 const Keyboard = ({ keys, onKeyPressed }: IKeyboard) => {
-
   function handleInput(e: any) {
     onKeyPressed(e.target.textContent)
   }
@@ -17,28 +16,28 @@ const Keyboard = ({ keys, onKeyPressed }: IKeyboard) => {
   }
 
   return (
-    <div className={styles.keyboardContainer}>
+    <div className='keyboard'>
       {Array.from(Array(10)).map((_, i) => (
-        <button key={i} className={styles.key} onClick={handleInput}>
+        <button key={i} className='keyboard_key' onClick={handleInput}>
           {keys[i]}
         </button>
       ))}
-      <div className={styles.emptyKey}></div>
+      <div className='keyboard_empty'></div>
       {Array.from(Array(9)).map((_, i) => (
-        <button key={i + 10} className={styles.key} onClick={handleInput}>
+        <button key={i + 10} className='keyboard_key' onClick={handleInput}>
           {keys[i + 10]}
         </button>
       ))}
-      <button className={styles.enterKey} onClick={handleEnter}>
+      <button className='keyboard_enter' onClick={handleEnter}>
         ENTER
       </button>
       {Array.from(Array(7)).map((_, i) => (
-        <button key={i + 19} className={styles.key} onClick={handleInput}>
+        <button key={i + 19} className='keyboard_key' onClick={handleInput}>
           {keys[i + 19]}
         </button>
       ))}
-      <button className={styles.deleteKey} onClick={handleDelete}>
-        DELETE
+      <button className='keyboard_delete' onClick={handleDelete}>
+        <img src={backSpace} alt='Borrar' />
       </button>
     </div>
   )

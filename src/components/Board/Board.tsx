@@ -7,6 +7,7 @@ import { GameStatus } from '../../types/types'
 import useWindow from '../../hooks/useWindow'
 import { KEYS } from '../../constants/constants'
 import { getWordEachFiveMinutes } from '../../utils/getWord'
+import Keyboard from '../Keyboard/Keyboard'
 
 const Board = () => {
   const [event, updateEvent] = useReducer((prev: IBoard, next: Partial<IBoard>) => {
@@ -19,10 +20,13 @@ const Board = () => {
     gameStatus: GameStatus.Playing
   })
 
-  
   const handleKeyDown = (ev: KeyboardEvent) => {
-    const key = ev.key.toUpperCase()
+    const key = ev.key.toUpperCase();
 
+    onKeyPressed(key);
+  }
+  
+  const onKeyPressed = (key: string) => {
     if (event.gameStatus !== GameStatus.Playing) {
       return;
     }
@@ -97,6 +101,7 @@ const Board = () => {
         {Array.from(Array(5 - event.attempts)).map((_, i) => (
           <RowEmpty key={i} />
         ))}
+        <Keyboard keys={KEYS} onKeyPressed={onKeyPressed} />
     </main>
   )
 }

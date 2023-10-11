@@ -91,6 +91,7 @@ const Board = () => {
             key={i}
             word={word}
             solution={event.wordChoosed}
+            isExample={false}
           />
         ))}
 

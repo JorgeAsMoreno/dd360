@@ -4,7 +4,7 @@ import styles from './box.module.scss'
 import classNames from 'classnames/bind'
 const classes = classNames.bind(styles)
 
-const Box = ({ value, status }: IBoxProps) => {
+const Box = ({ value, status, isExample }: IBoxProps) => {
 
   const boxStatus = classes({
     correct: status === "correct",

@@ -1,18 +1,9 @@
-import React from 'react'
 import { IRowFinished } from './rowfinished.interface'
 import Box from '../Box/Box'
-import { BoxStatus } from '../../types/types'
 import '../../styles/rows.scss'
+import { checkLetter } from '../../utils/checkLetter'
 
-const RowFinished = ({ word, solution }: IRowFinished) => {
-
-  const checkLetter = (letter: string, position: number): BoxStatus => {
-    if (solution.includes(letter)) {
-      if (solution[position] === letter) {
-        return 'correct'
-      } else return 'present'
-    } else return 'absent'
-  }
+const RowFinished = ({ word, solution, isExample }: IRowFinished) => {
 
   return (
     <div className='row'>
@@ -21,7 +12,7 @@ const RowFinished = ({ word, solution }: IRowFinished) => {
           <Box
             key={index}
             value={word[index]}
-            status={checkLetter(word[index], index)}  
+            status={checkLetter(word[index], index, solution, isExample)}  
           />
         ))
       }

@@ -1,47 +1,51 @@
-# Getting Started with Create React App
+## Configuracion del proyecto
+- Para instalar las dependencias necesarias para el proyecto es necesario correr
+`yarn install` en el root del proyecto
+ Una vez hecho esto podemos correr `npm start` para iniciar el juego
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## App
+- [Aqui puedes encontrar la app desplegada](https://dd360.vercel.app/)
 
-## Available Scripts
+## Descripcion y reglas del juego
 
-In the project directory, you can run:
+- Se compone de 3 vistas. Una donde muestra las instrucciones del juego, otra donde
+muestra el tablero del juego y la última, donde encontramos el resultado del juego
 
-### `npm start`
+- Deberá detectar que es la primera vez que entra y deberá mostrar las instrucciones
+del juego
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Al iniciar, la aplicación deberá seleccionar automáticamente una palabra de 5 letras
+del catálogo de palabras
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Al teclear o al dar click en una letra del teclado virtual, la letra se mostrará en la
+primera caja que se encuentre vacía y así sucesivamente
 
-### `npm test`
+- Al completar una fila de 5 letras, la aplicación compará cada letra de palabra
+formada con la palabra seleccionada en el punto 3 y se aplicará la siguiente lógica:
+   - Si la letra ingresada está en el mismo lugar, la caja se pintara de verde
+   - Si la letra ingresada está en la palabra pero no en el mismo lugar, la caja se
+  pintará de amarillo
+  - Si la letra ingresada no se encuentra en la palabra, la caja se mostrar de
+  color gris
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Si coincide la palabra ingresada con la seleccionada, mostrará el modal de
+estadísticas y sumará un punto al contador de victorias y al contador de partidas
 
-### `npm run build`
+- Si el usuario llena las 5 filas sin lograr que coincida la palabra, mostrará el modal de
+estadísticas y sumará un punto al contador de partidas. Además, mostrará la palabra
+que fue seleccionada
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Cada 5 minutos la aplicación seleccionará otra palabra y limpiará el tablero, esta
+palabra no debe repetirse
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- La aplicación mostrará el modal de instrucciones al dar click en el icono de pregunta
+- La aplicación mostrará el modal de estadísticas al dar click en el icono de estadisticas
+- La aplicación se mostrará en “modo oscuro” al activar el toggle*
+- La aplicación se mostrará en “modo claro” al desactivar el toggle*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Stack utilizado
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# dd360
+- React
+- TypeScript
+- SaSS
+  

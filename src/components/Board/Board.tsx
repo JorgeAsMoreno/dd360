@@ -90,7 +90,6 @@ const Board = ({ setHasOnboarding, theme, setTheme }: any) => {
     })
 
     if (event.gameStatus === GameStatus.Won || event.gameStatus === GameStatus.Lost) {
-      console.log('ENTROOOO')
       updateEvent({
         wordChoosed: getWordEachFiveMinutes(),
         attempts: 1,

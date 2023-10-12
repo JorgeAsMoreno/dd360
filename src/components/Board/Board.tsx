@@ -23,7 +23,7 @@ const Board = ({ setHasOnboarding, theme, setTheme }: any) => {
   const [event, updateEvent] = useReducer((prev: IBoard, next: Partial<IBoard>) => {
     return { ...prev, ...next }
   }, {
-    wordChoosed: 'PLATA',
+    wordChoosed: getWordEachFiveMinutes(),
     attempts: 1,
     currentWord: '',
     completedWords: [],

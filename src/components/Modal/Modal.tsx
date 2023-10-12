@@ -2,8 +2,9 @@ import { IModal } from './modal.interface'
 import './modal.scss'
 import { GameStatus } from '../../types/types'
 import { getWordEachFiveMinutes } from '../../utils/getWord'
+import { formatTime } from '../../utils/formatNextWordTime'
 
-const Modal = ({ plays, victories, solution, gameStatus, updateEvent }: IModal) => {
+const Modal = ({ plays, victories, solution, gameStatus, updateEvent, nextWordTime }: IModal) => {
   const handleAcceptClick = () => {
     if (gameStatus === GameStatus.Won || gameStatus === GameStatus.Lost) {
       updateEvent({
@@ -32,10 +33,14 @@ const Modal = ({ plays, victories, solution, gameStatus, updateEvent }: IModal) 
             <p>Victorias</p>
           </div>
         </div>
-        <div>
+        <div className='mistery_word'>
           {gameStatus === GameStatus.Lost ? (
-            <p>La palabra era: {solution}</p>
+            <p>La palabra era: <b>{solution}</b></p>
           ) : null}
+        </div>
+        <div className='next_word'>
+          <p>Siguiente palabra</p>
+          <b>{formatTime(nextWordTime)}</b>
         </div>
         <div className='modal_button'>
           <button onClick={handleAcceptClick}>Aceptar</button>

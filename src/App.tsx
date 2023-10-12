@@ -4,6 +4,7 @@ import Onboarding from './components/Onboarding/Onboarding';
 
 function App() {
   const [hasOnboarding, setHasOnboarding] = useState<boolean>(false)
+  const [theme, setTheme] = useState<string>('light')
 
   useEffect(() => {
     const hasInteracted = localStorage.getItem('hasInteracted')
@@ -11,18 +12,19 @@ function App() {
       setHasOnboarding(true)
     }
   }, [])
+
   return (
-    <React.Fragment>
+    <div data-theme={theme}>
       {
         hasOnboarding === false ?
         <Onboarding
           {...{setHasOnboarding}}
         /> :
         <Board
-          {...{setHasOnboarding}}
+          {...{setHasOnboarding, theme, setTheme}}
         />
       }
-    </React.Fragment>
+    </div>
   );
 }
 

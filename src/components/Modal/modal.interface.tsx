@@ -5,6 +5,7 @@ export interface IModal {
   plays: number
   solution?: string
   gameStatus: GameStatus,
-  updateEvent: any
+  updateEvent: any,
+  nextWordTime: number
 }
 

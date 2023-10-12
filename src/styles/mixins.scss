@@ -1,7 +1,7 @@
 @mixin box {
   font-size: 2em;
   font-weight: bold;
-  background-color: #939b9f4d;
+  background-color:  var(--empty-gray);
   width: $size;
   height: $size;
   display: flex;
@@ -18,11 +18,11 @@
 }
 
 @mixin keybase {
-  background-color: #d3d6da;
+  background-color: var(--keys-bg);
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  color: #56575e;
+  color: var(--keys-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@
 
   &:active {
     background-color: #818181;
-    color: #fff;
+    color: var(--white);
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
 }

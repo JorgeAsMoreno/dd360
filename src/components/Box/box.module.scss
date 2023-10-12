@@ -3,25 +3,25 @@
 
 .correct {
   @include box;
-  background-color: #66a060;
-  color: #fff;
+  background-color: var(--green);
+  color: var(--white);
 }
 
 .present {
   @include box;
-  background-color: #ceb02c;
-  color: #fff;
+  background-color: var(--yellow);
+  color: var(--white);
 }
 
 .absent {
   @include box;
-  background-color: #939b9F;
-  color: #fff;
+  background-color: var(--absent-gray);
+  color: var(--white);
 }
 
 .empty {
   @include box;
-  background-color: #939b9f4d;
+  background-color: var(--empty-gray);
 }
 .edit {
   @include box;

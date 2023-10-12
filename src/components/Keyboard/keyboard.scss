@@ -7,7 +7,7 @@
   margin: 0 auto;
   gap: 5px;
   border-radius: 15px;
-  background: #dadce04d;
+  background: var(--keyboard-bg);
   padding: 1.5em 3em;
 
   &_key {
@@ -35,22 +35,4 @@
     align-items: center;
     justify-content: center;
   }
-}
-
-.correct {
-  background-color: #4caf50;
-  border: #4caf50 solid 2px;
-  color: black;
-}
-
-.present {
-  background-color: #e5f321;
-  border: #e5f321 solid 2px;
-  color: black;
-}
-
-.absent {
-  background-color: #aaa;
-  border: #aaa solid 2px;
-  color: black;
 }

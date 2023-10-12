@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import RowFinished from '../RowFinished/RowFinished'
 import RowEmpty from '../RowEmpty/RowEmpty'
 import RowCurrent from '../RowCurrent/RowCurrent'
@@ -10,10 +10,16 @@ import { getWordEachFiveMinutes } from '../../utils/getWord'
 import Keyboard from '../Keyboard/Keyboard'
 import './board.scss'
 import questionImage from '../../icons/question.svg'
+import darkQuestion from '../../icons/question_dark.svg'
 import statsImage from '../../icons/stats.svg'
+import darkStats from '../../icons/dark_stats.svg'
 import Modal from '../Modal/Modal'
+import darkBg from '../../icons/dark.png'
+import lightBg from '../../icons/light.png'
+import moon from '../../icons/moon.png'
+import sun from '../../icons/sun.png'
 
-const Board = ({ setHasOnboarding }: any) => {
+const Board = ({ setHasOnboarding, theme, setTheme }: any) => {
   const [event, updateEvent] = useReducer((prev: IBoard, next: Partial<IBoard>) => {
     return { ...prev, ...next }
   }, {
@@ -24,7 +30,8 @@ const Board = ({ setHasOnboarding }: any) => {
     gameStatus: GameStatus.Playing,
     plays: 0,
     victories: 0,
-    showStats: false
+    showStats: false,
+    nextWord: 5 * 60
   })
 
   const handleKeyDown = (ev: KeyboardEvent) => {
@@ -98,26 +105,55 @@ const Board = ({ setHasOnboarding }: any) => {
   useWindow('keydown', handleKeyDown)
   
   useEffect(() => {
-    setInterval(function(){
-      updateEvent({ wordChoosed: getWordEachFiveMinutes() })
-    }, 5 * 60 * 1000)
-  }, [])
+    const intervalId = setInterval(() => {
+      if (event.nextWord > 0) {
+        updateEvent({ nextWord: event.nextWord - 1 })
+      } else {
+        updateEvent({
+          nextWord: 5 * 60,
+          wordChoosed: getWordEachFiveMinutes() 
+        })
+      }
+    }, 1000)
+
+    return () => {
+      clearInterval(intervalId)
+    };
+  }, [event.nextWord])
+
+  const handleSwitchTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
 
   return (
-    <main className='board'>
+    <main className='board' data-theme={''}>
       <div className='board_controls'>
         <div>
           <button className='control' onClick={() => setHasOnboarding(false)}>
-            <img src={questionImage} alt='ayuda' />
+            <img src={theme === 'light' ? questionImage : darkQuestion} alt='ayuda' />
           </button>
         </div>
         <div>
           <h1>WORDLE</h1>
         </div>
-        <div>
-          <button className='control' onClick={() => updateEvent({ showStats: true })}>
-            <img src={statsImage} alt='Estadisticas' />
-          </button>
+        <div className='control-icons'>
+          <div>
+            <button className='control' onClick={() => updateEvent({ showStats: true })}>
+              <img src={theme === 'light' ? statsImage : darkStats} alt='Estadisticas' />
+            </button>
+          </div>
+          <div className='toggle'>
+            <img
+              src={theme === 'light' ? lightBg : darkBg}
+              alt='fondo del tema'
+            />
+            <img
+              className={theme === 'light' ? 'light-theme' : 'dark-theme'}
+              onClick={handleSwitchTheme}
+              src={theme === 'light' ? sun : moon}
+              alt='icono del tema'
+            />
+          </div>
         </div>
       </div>
       <div className='board_rows'>
@@ -140,6 +176,7 @@ const Board = ({ setHasOnboarding }: any) => {
       <Keyboard
         keys={KEYS}
         onKeyPressed={onKeyPressed}
+        theme={theme}
       />
       {event.showStats === true ? (
         <Modal
@@ -147,6 +184,8 @@ const Board = ({ setHasOnboarding }: any) => {
           plays={event.plays}
           gameStatus={event.gameStatus}
           updateEvent={updateEvent}
+          solution={event.wordChoosed}
+          nextWordTime={event.nextWord}
         />
       ) : null}
     </main>

@@ -1,8 +1,9 @@
 import { IKeyboard } from './keyboard.interface'
 import './keyboard.scss'
 import backSpace from '../../icons/backspace.svg'
+import backspaceDark from '../../icons/backspace_dark.svg'
 
-const Keyboard = ({ keys, onKeyPressed }: IKeyboard) => {
+const Keyboard = ({ keys, onKeyPressed, theme }: IKeyboard) => {
   function handleInput(e: any) {
     onKeyPressed(e.target.textContent)
   }
@@ -37,7 +38,7 @@ const Keyboard = ({ keys, onKeyPressed }: IKeyboard) => {
         </button>
       ))}
       <button className='keyboard_delete' onClick={handleDelete}>
-        <img src={backSpace} alt='Borrar' />
+        <img src={theme === 'light' ? backSpace : backspaceDark} alt='Borrar' />
       </button>
     </div>
   )

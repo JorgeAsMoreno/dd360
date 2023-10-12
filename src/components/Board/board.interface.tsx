@@ -6,5 +6,7 @@ export interface IBoard {
   currentWord: string;
   completedWords: string[];
   gameStatus: GameStatus
-  showModal: boolean
+  plays: number,
+  victories: number
+  showStats: boolean
 }

@@ -9,4 +9,5 @@ export interface IBoard {
   plays: number,
   victories: number
   showStats: boolean
+  nextWord: number
 }

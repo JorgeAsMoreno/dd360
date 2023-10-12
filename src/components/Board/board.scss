@@ -3,12 +3,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2em 0 0 0;
+  padding: 2em 0 1em 0;
   position: relative;
+  background-color: var(--site-bg);
+  height: 100vh;
 
   &_controls {
     align-items: center;
-    background: #F3F3F3;
+    background: var(keyboard-bg);
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -18,7 +20,7 @@
 
     h1 {
       margin: 0;
-      color: #202537;
+      color: (var(--title));
       font-size: 40px;
       font-weight: 600;
       letter-spacing: 3px;
@@ -33,5 +35,32 @@
 
   &_rows {
     margin: 2em 0;
+  }
+
+  .control-icons {
+    align-items: center;
+    display: flex;
+
+    .toggle {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .control-icons .toggle img {
+      transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
+    }
+
+    .light-theme {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+    }
+
+    .dark-theme {
+      position: absolute;
+      cursor: pointer;
+      left: 0;
+    }
   }
 }

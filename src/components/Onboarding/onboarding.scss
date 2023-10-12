@@ -1,23 +1,24 @@
 .onboarding {
   display: flex;
+  background-color: var(--site-bg);
   justify-content: center;
   align-items: center;
   padding: 3em 0;
 
   p {
-    color: #000;
+    color: var(--text-color);
     font-size: 19px;
     margin: 0 0 1em 0;
   }
 
   &_container {
-    border: 1px solid #000;
+    border: 1px solid  var(--border-color);
     border-radius: 15px;
     padding: 5em 3em;
     width: 546px;
 
     h1 {
-      color: #000;
+      color: var(--text-color);
       text-align: center;
       font-size: 35px;
       font-weight: 800;
@@ -30,7 +31,7 @@
 
     &__examples {
       .title {
-        color: #000;
+        color: var(--text-color);
         font-size: 19px;
         margin-bottom: 1em;
         font-weight: 700;
@@ -57,14 +58,16 @@
 
       button {
         border-radius: 5px;
-        background: #6AAA64;
+        background: var(--green);
         border: 0;
-        color: #FFF;
+        color:  var(--white);
+        cursor: pointer;
         text-align: center;
         font-size: 28px;
         font-weight: 800;
         width: 263px;
         padding: .5em 0;
+        margin-top: 2em;
       }
     }
   }

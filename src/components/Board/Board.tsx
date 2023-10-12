@@ -11,6 +11,7 @@ import Keyboard from '../Keyboard/Keyboard'
 import './board.scss'
 import questionImage from '../../icons/question.svg'
 import statsImage from '../../icons/stats.svg'
+import Modal from '../Modal/Modal'
 
 const Board = ({ setHasOnboarding }: any) => {
   const [event, updateEvent] = useReducer((prev: IBoard, next: Partial<IBoard>) => {
@@ -21,7 +22,9 @@ const Board = ({ setHasOnboarding }: any) => {
     currentWord: '',
     completedWords: [],
     gameStatus: GameStatus.Playing,
-    showModal: false,
+    plays: 0,
+    victories: 0,
+    showStats: false
   })
 
   const handleKeyDown = (ev: KeyboardEvent) => {
@@ -51,10 +54,14 @@ const Board = ({ setHasOnboarding }: any) => {
   }
 
   const handleEnter = () => {
+  
     if (event.currentWord === event.wordChoosed) {
       updateEvent({
         completedWords: [...event.completedWords, event.currentWord],
-        gameStatus: GameStatus.Won
+        gameStatus: GameStatus.Won,
+        victories: event.victories + 1,
+        plays: event.plays + 1,
+        showStats: true
       })
       return
     }
@@ -62,7 +69,9 @@ const Board = ({ setHasOnboarding }: any) => {
     if (event.attempts === 5) {
       updateEvent({
         completedWords: [...event.completedWords, event.currentWord],
-        gameStatus: GameStatus.Lost
+        gameStatus: GameStatus.Lost,
+        plays: event.plays + 1,
+        showStats: true
       })
       return
     }
@@ -72,6 +81,18 @@ const Board = ({ setHasOnboarding }: any) => {
       attempts: event.attempts + 1,
       currentWord: ''
     })
+
+    if (event.gameStatus === GameStatus.Won || event.gameStatus === GameStatus.Lost) {
+      console.log('ENTROOOO')
+      updateEvent({
+        wordChoosed: getWordEachFiveMinutes(),
+        attempts: 1,
+        currentWord: '',
+        completedWords: [],
+        gameStatus: GameStatus.Playing,
+        showStats: false
+      });
+    }
   }
 
   useWindow('keydown', handleKeyDown)
@@ -94,7 +115,7 @@ const Board = ({ setHasOnboarding }: any) => {
           <h1>WORDLE</h1>
         </div>
         <div>
-          <button className='control'>
+          <button className='control' onClick={() => updateEvent({ showStats: true })}>
             <img src={statsImage} alt='Estadisticas' />
           </button>
         </div>
@@ -120,6 +141,14 @@ const Board = ({ setHasOnboarding }: any) => {
         keys={KEYS}
         onKeyPressed={onKeyPressed}
       />
+      {event.showStats === true ? (
+        <Modal
+          victories={event.victories}
+          plays={event.plays}
+          gameStatus={event.gameStatus}
+          updateEvent={updateEvent}
+        />
+      ) : null}
     </main>
   )
 }
